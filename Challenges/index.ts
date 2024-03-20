@@ -97,4 +97,138 @@ let people = [
     "Dodos deck, 21, male"
 ];
 
-console.log(formatArray(people));
+// console.log(formatArray(people));
+
+
+// 6. Sorting Array
+function isPrime(num: number) {
+    if (num <= 1) return false;
+    if (num === 2) return true;
+    if (num % 2 === 0) return false;
+    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+
+function customSort(arr: number[]) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] < arr[j]) {
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!isPrime(arr[i])) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+
+// console.log(customSort([10, 5, 3, 8, 7, 2, 6]));
+
+
+
+
+// 7. majorityArray
+function hasMajorityElement(arr: number[]) {
+    const counts: Record<number, number> = {};
+    for (let i = 0; i < arr.length; i++) {
+        const num: number = arr[i];
+        counts[num] = (counts[num] || 0) + 1;
+        if (counts[num] > arr.length / 2) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// console.log("[3, 1, 3, 4, 3] has majority element? => ", hasMajorityElement([3, 1, 3, 4, 3])); 
+// console.log("[3, 1, 3, 4, 4] has majority element? => ", hasMajorityElement([3, 1, 3, 4, 4]));
+
+
+
+
+
+
+
+// 8. AsynchJS
+interface student{
+    name: string;
+    age?: number;
+}
+const setStudentAgeApi = (student: student, age: number) => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            student.age = age;
+            if(age < 0)
+                reject ("Bad Age")
+         else
+                  resolve(student)
+        },
+            500);
+    });
+ }
+
+// let student = { name: "denis" }
+// console.log("Loading student DATA...")
+// setStudentAgeApi(student, 23).then(res=>{
+//     console.log(res)
+// }).catch(err => console.log(err))
+
+
+
+
+
+// 9. AsynchJS
+interface familyObject{
+    fatherName: string;
+    MotherName: string;
+    childrenNumber: number;
+    totalNumberOfFamilyMembers?: number;
+}
+const setFamilyApi = async (arr: familyObject[]) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].totalNumberOfFamilyMembers = arr[i].childrenNumber + 2;
+                if (arr[i].fatherName.toLowerCase() === "yves") reject("Yves is not an allowed dad in 2022.")
+            }
+            resolve(arr);
+        }, 1000);
+    });
+}
+
+let families = [
+    {
+        fatherName: "David",
+        MotherName: "Noella",
+        childrenNumber: 4,
+    },
+    {
+        fatherName: "Emmy",
+        MotherName: "Ange",
+        childrenNumber: 6,
+    },
+    {
+        fatherName: "Yves",
+        MotherName: "Rachel",
+        childrenNumber: 2,
+    }
+];
+
+(async () => {
+    console.log("Waiting Family DATA...")
+    try {
+        const family = await setFamilyApi(families);
+        console.log(family);
+    } catch (error) {
+        console.error(error);
+    }
+})();
