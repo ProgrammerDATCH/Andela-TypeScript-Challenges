@@ -1,6 +1,6 @@
 //Prime
 const arrNumbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const filterPrime = (arrNumbers: number[]) => {
+const filterPrime = (arrNumbers: number[]): number[] => {
     const primeNumbers: number[] = []
     for (let index = 0; index < arrNumbers.length; index++) {
         const currNumber: number = arrNumbers[index];
@@ -28,7 +28,7 @@ const filterPrime = (arrNumbers: number[]) => {
 // console.log(filterPrime(arrNumbers))
 
 // 2. Palindrome
-function isPalindrome(txt: string){
+function isPalindrome(txt: string): string{
     txt = txt.toLowerCase().replace(/[^a-z0-9]/g, '');
     const isTxtPalindrome =  (txt == txt.split('').reverse().join(''))
     return (isTxtPalindrome ? `${txt} - is a palindrome.`: `${txt} - is NOT a palindrome.`)
@@ -41,7 +41,7 @@ function isPalindrome(txt: string){
 
 // 3. Array Reversed
 interface Arr extends Array<string | number> {}
-function reverseArray(arr: Arr){
+function reverseArray(arr: Arr): Arr{
     let reverseArray: Arr = [];
     for(let i=arr.length-1; i>=0; i--){
         reverseArray.push(arr[i])
@@ -53,7 +53,7 @@ function reverseArray(arr: Arr){
 //4. Reverse inplace Array
 type ArrElement = string | number;
 
-function reverseInplaceArray(arr: Arr) {
+function reverseInplaceArray(arr: Arr): Arr {
     for (let i = 0; i < Math.floor(arr.length / 2); i++) {
         let temp: ArrElement = arr[i];
         arr[i] = arr[arr.length - i - 1];
@@ -101,7 +101,7 @@ let people = [
 
 
 // 6. Sorting Array
-function isPrime(num: number) {
+function isPrime(num: number):boolean {
     if (num <= 1) return false;
     if (num === 2) return true;
     if (num % 2 === 0) return false;
@@ -111,7 +111,7 @@ function isPrime(num: number) {
     return true;
 }
 
-function customSort(arr: number[]) {
+function customSort(arr: number[]): number[] {
     for (let i = 0; i < arr.length; i++) {
         for (let j = i + 1; j < arr.length; j++) {
             if (arr[i] < arr[j]) {
@@ -137,7 +137,7 @@ function customSort(arr: number[]) {
 
 
 // 7. majorityArray
-function hasMajorityElement(arr: number[]) {
+function hasMajorityElement(arr: number[]): boolean {
     const counts: Record<number, number> = {};
     for (let i = 0; i < arr.length; i++) {
         const num: number = arr[i];
@@ -163,7 +163,7 @@ interface student{
     name: string;
     age?: number;
 }
-const setStudentAgeApi = (student: student, age: number) => {
+const setStudentAgeApi = (student: student, age: number): Promise<student> => {
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
             student.age = age;
@@ -193,7 +193,7 @@ interface familyObject{
     childrenNumber: number;
     totalNumberOfFamilyMembers?: number;
 }
-const setFamilyApi = async (arr: familyObject[]) => {
+const setFamilyApi = async (arr: familyObject[]): Promise<familyObject[]> => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             for (let i = 0; i < arr.length; i++) {
