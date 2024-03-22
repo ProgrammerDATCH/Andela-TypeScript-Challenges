@@ -30,7 +30,7 @@ const filterPrime = (arrNumbers: number[]): number[] => {
 // 2. Palindrome
 function isPalindrome(txt: string): string{
     txt = txt.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const isTxtPalindrome =  (txt == txt.split('').reverse().join(''))
+    const isTxtPalindrome: boolean =  (txt == txt.split('').reverse().join(''))
     return (isTxtPalindrome ? `${txt} - is a palindrome.`: `${txt} - is NOT a palindrome.`)
 }
 
@@ -115,7 +115,7 @@ function customSort(arr: number[]): number[] {
     for (let i = 0; i < arr.length; i++) {
         for (let j = i + 1; j < arr.length; j++) {
             if (arr[i] < arr[j]) {
-                let temp = arr[i];
+                let temp: number = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
