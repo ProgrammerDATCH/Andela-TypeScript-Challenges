@@ -37,31 +37,29 @@ function isPalindrome(txt: string): string{
 // console.log(isPalindrome("eye"))
 // console.log(isPalindrome("This"))
 // console.log(isPalindrome("Ey@e-"))
+// console.log(isPalindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
 
 
 // 3. Array Reversed
-interface Arr extends Array<string | number> {}
-function reverseArray(arr: Arr): Arr{
-    let reverseArray: Arr = [];
+function reverseArray(arr: number[]): number[]{
+    let reverseArray: number[] = [];
     for(let i=arr.length-1; i>=0; i--){
         reverseArray.push(arr[i])
     }
     return reverseArray
 }
-// console.log(reverseArray([".", " old ", " Years ", 23, "I am "]))
+console.log(reverseArray([ 1, 2, 3, 4]))
 
 //4. Reverse inplace Array
-type ArrElement = string | number;
-
-function reverseInplaceArray(arr: Arr): Arr {
+function reverseInplaceArray(arr: number[]): number[] {
     for (let i = 0; i < Math.floor(arr.length / 2); i++) {
-        let temp: ArrElement = arr[i];
+        let temp: number = arr[i];
         arr[i] = arr[arr.length - i - 1];
         arr[arr.length - i - 1] = temp;
     }
     return arr;
 }
-// console.log(reverseInplaceArray([".", " old ", " Years ", 24, "I am "]))
+console.log(reverseInplaceArray([ 1, 2, 3, 4]))
 
 //5. Formated Object
 type PersonInfo = { 'second-name': string; age: number };
